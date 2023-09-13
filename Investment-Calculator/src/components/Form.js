@@ -2,36 +2,43 @@ import React from "react";
 import calculateHandler from "../CalculateHandler";
 
 const Form = props => {
+  const [formData, setFormData] = React.useState({
+    currentSavings: "",
+    yearlySavings: "",
+    expectedReturn: "",
+    investmentDuration: "",
+  });
+
   const currentSavingsHandler = e => {
-    props.setFormData(prev => {
+    setFormData(prev => {
       return { ...prev, currentSavings: e.target.value };
     });
   };
   const yearlySavingsHandler = e => {
-    props.setFormData(prev => {
+    setFormData(prev => {
       return { ...prev, yearlySavings: e.target.value };
     });
   };
   const expectedReturnHandler = e => {
-    props.setFormData(prev => {
+    setFormData(prev => {
       return { ...prev, expectedReturn: e.target.value };
     });
   };
   const investmentDurationHandler = e => {
-    props.setFormData(prev => {
+    setFormData(prev => {
       return { ...prev, investmentDuration: e.target.value };
     });
   };
 
   const handleFormSubmit = e => {
     e.preventDefault();
-    const yearlyData = calculateHandler(props.formData);
+    const yearlyData = calculateHandler(formData);
     props.setYearlyData(yearlyData);
     formResetHandler();
   };
 
   const formResetHandler = () => {
-    props.setFormData({
+    setFormData({
       currentSavings: "",
       yearlySavings: "",
       expectedReturn: "",
@@ -47,7 +54,7 @@ const Form = props => {
           <input
             type="number"
             id="current-savings"
-            value={props.formData.currentSavings}
+            value={formData.currentSavings}
             onChange={currentSavingsHandler}
             required
           />
@@ -57,7 +64,7 @@ const Form = props => {
           <input
             type="number"
             id="yearly-contribution"
-            value={props.formData.yearlySavings}
+            value={formData.yearlySavings}
             onChange={yearlySavingsHandler}
             required
           />
@@ -71,7 +78,7 @@ const Form = props => {
           <input
             type="number"
             id="expected-return"
-            value={props.formData.expectedReturn}
+            value={formData.expectedReturn}
             onChange={expectedReturnHandler}
             required
           />
@@ -81,7 +88,7 @@ const Form = props => {
           <input
             type="number"
             id="duration"
-            value={props.formData.investmentDuration}
+            value={formData.investmentDuration}
             onChange={investmentDurationHandler}
             required
           />
