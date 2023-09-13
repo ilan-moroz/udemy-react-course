@@ -28,8 +28,7 @@ function App() {
   const [expenses, setExpenses] = React.useState(EXPENSES_DUMMY);
 
   const addExpenseHandler = expense => {
-    if (expense.title !== "" && expense.amount !== "" && expense.date !== "")
-      setExpenses(prev => [expense, ...prev]);
+    setExpenses(prev => [expense, ...prev]);
   };
 
   return (

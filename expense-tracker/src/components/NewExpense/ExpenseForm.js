@@ -31,7 +31,7 @@ const ExpenseForm = props => {
 
     const newExpenseData = {
       title: formData.title,
-      amount: formData.amount,
+      amount: +formData.amount,
       date: new Date(formData.date),
     };
 
@@ -53,6 +53,7 @@ const ExpenseForm = props => {
             type="text"
             onChange={titleChangeHandler}
             value={formData.title}
+            required
           />
         </div>
         <div className="new-expense__control">
@@ -63,6 +64,7 @@ const ExpenseForm = props => {
             step=".01"
             onChange={amountChangeHandler}
             value={formData.amount}
+            required
           />
         </div>
         <div className="new-expense__control">
@@ -73,10 +75,14 @@ const ExpenseForm = props => {
             max="2024-01-01"
             onChange={dateChangeHandler}
             value={formData.date}
+            required
           />
         </div>
       </div>
       <div className="new-expense__actions">
+        <button type="button" onClick={props.onCancel}>
+          Cancel
+        </button>
         <button type="submit">Add Expense</button>
       </div>
     </form>
