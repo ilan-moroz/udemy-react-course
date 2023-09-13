@@ -1,5 +1,6 @@
 import React from "react";
 import calculateHandler from "../CalculateHandler";
+import classes from "./Form.module.css";
 
 const INITIAL_STATE = {
   currentSavings: "",
@@ -30,8 +31,8 @@ const Form = props => {
   };
 
   return (
-    <form className="form" onSubmit={handleFormSubmit}>
-      <div className="input-group">
+    <form className={classes.form} onSubmit={handleFormSubmit}>
+      <div className={classes["input-group"]}>
         <p>
           <label htmlFor="current-savings">Current Savings ($)</label>
           <input
@@ -55,7 +56,7 @@ const Form = props => {
           />
         </p>
       </div>
-      <div className="input-group">
+      <div className={classes["input-group"]}>
         <p>
           <label htmlFor="expected-return">
             Expected Interest (%, per year)
@@ -83,11 +84,15 @@ const Form = props => {
           />
         </p>
       </div>
-      <p className="actions">
-        <button type="reset" className="buttonAlt" onClick={formResetHandler}>
+      <p className={classes.actions}>
+        <button
+          type="reset"
+          className={classes.buttonAlt}
+          onClick={formResetHandler}
+        >
           Reset
         </button>
-        <button type="submit" className="button">
+        <button type="submit" className={classes.button}>
           Calculate
         </button>
       </p>

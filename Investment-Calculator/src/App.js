@@ -17,7 +17,7 @@ function App() {
           initial={userInput.currentSavings}
         />
       ) : (
-        <p>No investment calculated yet.</p>
+        <p style={{ textAlign: "center" }}>No investment calculated yet.</p>
       )}
     </div>
   );
