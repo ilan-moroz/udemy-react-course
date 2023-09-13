@@ -10,7 +10,11 @@ function App() {
     <div>
       <Header />
       <Form setYearlyData={setYearlyData} />
-      {yearlyData.length > 0 && <ResultTable yearlyData={yearlyData} />}
+      {yearlyData.length > 0 ? (
+        <ResultTable yearlyData={yearlyData} />
+      ) : (
+        <p>No investment calculated yet.</p>
+      )}
     </div>
   );
 }
