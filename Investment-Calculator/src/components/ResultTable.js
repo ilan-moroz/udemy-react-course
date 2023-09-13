@@ -1,7 +1,4 @@
 const ResultTable = props => {
-  let totalInterestGained = 0;
-  let totalInvestedCapital = 0;
-
   return (
     <table className="result">
       <thead>
@@ -14,20 +11,24 @@ const ResultTable = props => {
         </tr>
       </thead>
       <tbody>
-        {props.yearlyData.map((data, index) => {
-          totalInterestGained += data.yearlyInterest;
-          totalInvestedCapital = data.yearlyContribution * (index + 1);
-
-          return (
-            <tr key={index}>
-              <td>{data.year}</td>
-              <td>{data.savingsEndOfYear.toFixed(2)}</td>
-              <td>{data.yearlyInterest.toFixed(2)}</td>
-              <td>{totalInterestGained.toFixed(2)}</td>
-              <td>{totalInvestedCapital.toFixed(2)}</td>
-            </tr>
-          );
-        })}
+        {props.yearlyData.map((data, index) => (
+          <tr key={index}>
+            <td>{data.year}</td>
+            <td>{data.savingsEndOfYear.toFixed(2)}</td>
+            <td>{data.yearlyInterest.toFixed(2)}</td>
+            <td>
+              {(
+                +data.savingsEndOfYear -
+                (+props.initial + +data.yearlyContribution * +data.year)
+              ).toFixed(2)}
+            </td>
+            <td>
+              {(+props.initial + +data.yearlyContribution * +data.year).toFixed(
+                2
+              )}
+            </td>
+          </tr>
+        ))}
       </tbody>
     </table>
   );

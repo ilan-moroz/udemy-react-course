@@ -20,6 +20,7 @@ const Form = props => {
   const handleFormSubmit = e => {
     e.preventDefault();
     const yearlyData = calculateHandler(formData);
+    props.setUserInput(formData);
     props.setYearlyData(yearlyData);
     formResetHandler();
   };

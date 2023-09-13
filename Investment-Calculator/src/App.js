@@ -5,13 +5,17 @@ import React from "react";
 
 function App() {
   const [yearlyData, setYearlyData] = React.useState([]);
+  const [userInput, setUserInput] = React.useState([]);
 
   return (
     <div>
       <Header />
-      <Form setYearlyData={setYearlyData} />
+      <Form setYearlyData={setYearlyData} setUserInput={setUserInput} />
       {yearlyData.length > 0 ? (
-        <ResultTable yearlyData={yearlyData} />
+        <ResultTable
+          yearlyData={yearlyData}
+          initial={userInput.currentSavings}
+        />
       ) : (
         <p>No investment calculated yet.</p>
       )}
