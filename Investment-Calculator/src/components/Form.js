@@ -1,13 +1,15 @@
 import React from "react";
 import calculateHandler from "../CalculateHandler";
 
+const INITIAL_STATE = {
+  currentSavings: "",
+  yearlySavings: "",
+  expectedReturn: "",
+  investmentDuration: "",
+};
+
 const Form = props => {
-  const [formData, setFormData] = React.useState({
-    currentSavings: "",
-    yearlySavings: "",
-    expectedReturn: "",
-    investmentDuration: "",
-  });
+  const [formData, setFormData] = React.useState(INITIAL_STATE);
 
   const inputChangedHandler = (input, value) => {
     setFormData(prev => {
@@ -23,12 +25,7 @@ const Form = props => {
   };
 
   const formResetHandler = () => {
-    setFormData({
-      currentSavings: "",
-      yearlySavings: "",
-      expectedReturn: "",
-      investmentDuration: "",
-    });
+    setFormData(INITIAL_STATE);
   };
 
   return (
