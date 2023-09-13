@@ -9,24 +9,9 @@ const Form = props => {
     investmentDuration: "",
   });
 
-  const currentSavingsHandler = e => {
+  const inputChangedHandler = (input, value) => {
     setFormData(prev => {
-      return { ...prev, currentSavings: e.target.value };
-    });
-  };
-  const yearlySavingsHandler = e => {
-    setFormData(prev => {
-      return { ...prev, yearlySavings: e.target.value };
-    });
-  };
-  const expectedReturnHandler = e => {
-    setFormData(prev => {
-      return { ...prev, expectedReturn: e.target.value };
-    });
-  };
-  const investmentDurationHandler = e => {
-    setFormData(prev => {
-      return { ...prev, investmentDuration: e.target.value };
+      return { ...prev, [input]: value };
     });
   };
 
@@ -55,7 +40,9 @@ const Form = props => {
             type="number"
             id="current-savings"
             value={formData.currentSavings}
-            onChange={currentSavingsHandler}
+            onChange={e =>
+              inputChangedHandler("currentSavings", e.target.value)
+            }
             required
           />
         </p>
@@ -65,7 +52,7 @@ const Form = props => {
             type="number"
             id="yearly-contribution"
             value={formData.yearlySavings}
-            onChange={yearlySavingsHandler}
+            onChange={e => inputChangedHandler("yearlySavings", e.target.value)}
             required
           />
         </p>
@@ -79,7 +66,9 @@ const Form = props => {
             type="number"
             id="expected-return"
             value={formData.expectedReturn}
-            onChange={expectedReturnHandler}
+            onChange={e =>
+              inputChangedHandler("expectedReturn", e.target.value)
+            }
             required
           />
         </p>
@@ -89,7 +78,9 @@ const Form = props => {
             type="number"
             id="duration"
             value={formData.investmentDuration}
-            onChange={investmentDurationHandler}
+            onChange={e =>
+              inputChangedHandler("investmentDuration", e.target.value)
+            }
             required
           />
         </p>
