@@ -6,6 +6,7 @@
   background: #8b005d;
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.26);
   cursor: pointer;
+  width: 100%;
 }
 
 .button:focus {
@@ -19,7 +20,7 @@
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.26);
 }
 
-@media only screen and(min-width: 768px) {
+@media only screen and (min-width: 768px) {
   .button {
     width: auto;
   }
