@@ -30,8 +30,9 @@ const AddUser = props => {
     <form className={classes.form} onSubmit={handleFormSubmit}>
       <div className={classes["input-group"]}>
         <p>
-          <label>Username</label>
+          <label htmlFor="username">Username</label>
           <input
+            id="username"
             type="text"
             value={formData.userName}
             onChange={e => inputChangedHandler("userName", e.target.value)}
@@ -39,8 +40,9 @@ const AddUser = props => {
           />
         </p>
         <p>
-          <label>Age (Years)</label>
+          <label htmlFor="age">Age (Years)</label>
           <input
+            id="age"
             type="number"
             min="1"
             step="1"
@@ -52,7 +54,9 @@ const AddUser = props => {
       </div>
       <div className={classes.actions}>
         <Button type={"submit"}>Add User</Button>
-        <Button type={"reset"}>Reset</Button>
+        <Button type={"button"} onClick={formResetHandler}>
+          Reset
+        </Button>
       </div>
     </form>
   );
