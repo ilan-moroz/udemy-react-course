@@ -4,33 +4,27 @@ import ErrorModal from "../ErrorModal/ErrorModal";
 import classes from "./AddUser.module.css";
 import React from "react";
 
-const INITIAL_STATE = {
-  userName: "",
-  age: "",
-};
-
 const AddUser = props => {
-  const [formData, setFormData] = React.useState(INITIAL_STATE);
   const [isError, SetIsError] = React.useState(false);
 
-  const inputChangedHandler = (input, value) => {
-    setFormData(prev => {
-      return { ...prev, [input]: value };
-    });
-  };
+  const nameInputRef = React.useRef();
+  const ageInputRef = React.useRef();
 
   const handleFormSubmit = e => {
     e.preventDefault();
-    if (formData.userName === "" && formData.age === "") {
+    const inputName = nameInputRef.current.value;
+    const inputAge = ageInputRef.current.value;
+    if (inputName === "" && inputAge === "") {
       SetIsError(true);
       return;
     }
+    const formData = {
+      userName: inputName,
+      age: inputAge,
+    };
     props.setUsers(prev => [...prev, formData]);
-    formResetHandler();
-  };
-
-  const formResetHandler = () => {
-    setFormData(INITIAL_STATE);
+    nameInputRef.current.value = "";
+    ageInputRef.current.value = "";
   };
 
   const removeErrorHandler = () => {
@@ -51,30 +45,16 @@ const AddUser = props => {
         <div className={classes["input-group"]}>
           <p>
             <label htmlFor="username">Username</label>
-            <input
-              id="username"
-              type="text"
-              value={formData.userName}
-              onChange={e => inputChangedHandler("userName", e.target.value)}
-            />
+            <input id="username" type="text" ref={nameInputRef} />
           </p>
           <p>
             <label htmlFor="age">Age (Years)</label>
-            <input
-              id="age"
-              type="number"
-              min="1"
-              step="1"
-              value={formData.age}
-              onChange={e => inputChangedHandler("age", e.target.value)}
-            />
+            <input id="age" type="number" min="1" step="1" ref={ageInputRef} />
           </p>
         </div>
         <div className={classes.actions}>
           <Button type={"submit"}>Add User</Button>
-          <Button type={"button"} onClick={formResetHandler}>
-            Reset
-          </Button>
+          <Button type={"reset"}>Reset</Button>
         </div>
       </form>
       {/* </Wrapper> */}
