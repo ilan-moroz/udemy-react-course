@@ -1,0 +1,13 @@
+.button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.25rem;
+  background: linear-gradient(180deg, #ff6600, #cc5200);
+  color: #fff5e1;
+  font-family: "Roboto Condensed", sans-serif;
+  cursor: pointer;
+}
+
+.button:hover {
+  background: linear-gradient(180deg, #e65a00, #b34800);
+}
