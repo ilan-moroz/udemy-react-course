@@ -9,12 +9,13 @@ const AddUser = props => {
 
   const nameInputRef = React.useRef();
   const ageInputRef = React.useRef();
+  const formRef = React.useRef();
 
   const handleFormSubmit = e => {
     e.preventDefault();
     const inputName = nameInputRef.current.value;
     const inputAge = ageInputRef.current.value;
-    if (inputName === "" && inputAge === "") {
+    if (inputName.trim() === "" || inputAge.trim() === "") {
       SetIsError(true);
       return;
     }
@@ -23,8 +24,7 @@ const AddUser = props => {
       age: inputAge,
     };
     props.setUsers(prev => [...prev, formData]);
-    nameInputRef.current.value = "";
-    ageInputRef.current.value = "";
+    formRef.current.reset();
   };
 
   const removeErrorHandler = () => {
@@ -41,7 +41,7 @@ const AddUser = props => {
           onClick={removeErrorHandler}
         />
       )}
-      <form className={classes.form} onSubmit={handleFormSubmit}>
+      <form className={classes.form} onSubmit={handleFormSubmit} ref={formRef}>
         <div className={classes["input-group"]}>
           <p>
             <label htmlFor="username">Username</label>
