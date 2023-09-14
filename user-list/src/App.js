@@ -9,7 +9,7 @@ function App() {
   const isEmpty = users.length === 0;
 
   return (
-    <div>
+    <>
       <Card>
         <AddUser setUsers={setUsers} />
       </Card>
@@ -18,7 +18,7 @@ function App() {
           <UserList users={users} />
         </Card>
       )}
-    </div>
+    </>
   );
 }
 

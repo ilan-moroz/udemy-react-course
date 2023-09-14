@@ -1,5 +1,6 @@
 import Button from "../Button/Button";
 import ErrorModal from "../ErrorModal/ErrorModal";
+// import Wrapper from "../helpers/Wrapper";
 import classes from "./AddUser.module.css";
 import React from "react";
 
@@ -37,6 +38,7 @@ const AddUser = props => {
   };
 
   return (
+    // <Wrapper>
     <>
       {isError && (
         <ErrorModal
@@ -75,6 +77,7 @@ const AddUser = props => {
           </Button>
         </div>
       </form>
+      {/* </Wrapper> */}
     </>
   );
 };
