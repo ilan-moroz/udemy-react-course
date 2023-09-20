@@ -32,7 +32,7 @@ const AvailableMeals = () => {
       setMealData(newMealData);
     } catch (err) {
       console.error(err);
-      setError(err);
+      setError(err.message);
     }
     setIsLoading(false);
   }, []);
@@ -52,7 +52,7 @@ const AvailableMeals = () => {
   ));
 
   if (error) {
-    return <section className={classes.meals}>{error.message}</section>;
+    return <section className={classes.meals}>{error}</section>;
   }
 
   return (
