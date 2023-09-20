@@ -6,12 +6,13 @@ import React from "react";
 const AvailableMeals = () => {
   const [mealData, setMealData] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(false);
+  const [error, setError] = React.useState(null);
 
   const fetchMeals = React.useCallback(async () => {
     setIsLoading(true);
     try {
       const response = await fetch(
-        "https://react-http-fc3c5-default-rtdb.firebaseio.com/meals.json"
+        "https://react-http-fc3c5-default-rtdb.firebaseio.com//meals.json"
       );
       if (!response.ok) {
         throw new Error("Something went wrong!");
@@ -31,6 +32,7 @@ const AvailableMeals = () => {
       setMealData(newMealData);
     } catch (err) {
       console.error(err);
+      setError(err);
     }
     setIsLoading(false);
   }, []);
@@ -48,6 +50,10 @@ const AvailableMeals = () => {
       description={meal.description}
     />
   ));
+
+  if (error) {
+    return <section className={classes.meals}>{error.message}</section>;
+  }
 
   return (
     <section className={classes.meals}>
