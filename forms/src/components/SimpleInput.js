@@ -1,11 +1,12 @@
 import React from "react";
 
-const SimpleInput = props => {
+const SimpleInput = () => {
   const [inputName, setInputName] = React.useState("");
-  const [validInput, setValidInput] = React.useState(false);
   const [inputTouched, setInputTouched] = React.useState(false);
+  // const nameRef = React.useRef();
 
-  const nameRef = React.useRef();
+  const inputIsValid = inputName.trim() !== "";
+  const nameInputIsInvalid = !inputIsValid && inputTouched;
 
   const inputChangeHandler = e => {
     setInputName(e.target.value);
@@ -14,25 +15,26 @@ const SimpleInput = props => {
   const onSubmit = e => {
     e.preventDefault();
     setInputTouched(true);
-    if (inputName.trim() === "") {
-      setValidInput(false);
-      return;
-    }
-    setValidInput(true);
+
+    if (!inputIsValid) return;
+
     console.log(
       "🚀 ~ file: SimpleInput.js:5 ~ SimpleInput ~ inputName:",
       inputName
     );
-    const refInput = nameRef.current.value;
-    console.log(
-      "🚀 ~ file: SimpleInput.js:20 ~ onSubmit ~ refInput:",
-      refInput
-    );
+    // const refInput = nameRef.current.value;
+    // console.log(
+    //   "🚀 ~ file: SimpleInput.js:20 ~ onSubmit ~ refInput:",
+    //   refInput
+    // );
     // nameRef.current.value = ""; =>not ideal,don`t manipulate the dom
     setInputName("");
+    setInputTouched(false);
   };
 
-  const nameInputIsInvalid = !validInput && inputTouched;
+  const inputBlur = e => {
+    setInputTouched(true);
+  };
 
   const inputClasses = !nameInputIsInvalid
     ? "form-control"
@@ -46,7 +48,8 @@ const SimpleInput = props => {
           type="text"
           id="name"
           onChange={inputChangeHandler}
-          ref={nameRef}
+          onBlur={inputBlur}
+          // ref={nameRef}
           value={inputName}
         />
         {nameInputIsInvalid && (
