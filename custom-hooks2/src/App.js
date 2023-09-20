@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Tasks from "./components/Tasks/Tasks";
 import NewTask from "./components/NewTask/NewTask";
-import useApi from "./components/hooks/useApi";
+import useApi from "./hooks/useApi";
 
 function App() {
   const [tasks, setTasks] = useState([]);
