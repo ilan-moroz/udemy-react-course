@@ -49,7 +49,7 @@ const Cart = props => {
         <span>{totalAmount}</span>
       </div>
       {checkout ? (
-        <OrderForm />
+        <OrderForm setCheckout={setCheckout} />
       ) : (
         <div className={classes.actions}>
           <button className={classes["button--alt"]} onClick={props.onClose}>

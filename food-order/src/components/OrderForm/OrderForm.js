@@ -107,6 +107,7 @@ const OrderForm = props => {
         )}
       </div>
       <div className="form-actions">
+        <button onClick={() => props.setCheckout(false)}>Cancel</button>
         <button disabled={!formIsValid}>Checkout</button>
       </div>
     </form>
