@@ -8,6 +8,8 @@ const SimpleInput = () => {
   const inputIsValid = inputName.trim() !== "";
   const nameInputIsInvalid = !inputIsValid && inputTouched;
 
+  const formIsValid = inputIsValid ? true : false;
+
   const inputChangeHandler = e => {
     setInputName(e.target.value);
   };
@@ -57,7 +59,9 @@ const SimpleInput = () => {
         )}
       </div>
       <div className="form-actions">
-        <button type="submit">Submit</button>
+        <button type="submit" disabled={!formIsValid}>
+          Submit
+        </button>
       </div>
     </form>
   );
