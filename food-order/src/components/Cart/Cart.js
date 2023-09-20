@@ -38,7 +38,7 @@ const Cart = props => {
   );
 
   const checkoutHandler = () => {
-    setCheckout(true);
+    setCheckout(prev => !prev);
   };
 
   return (
@@ -49,7 +49,7 @@ const Cart = props => {
         <span>{totalAmount}</span>
       </div>
       {checkout ? (
-        <OrderForm setCheckout={setCheckout} />
+        <OrderForm checkoutHandler={checkoutHandler} />
       ) : (
         <div className={classes.actions}>
           <button className={classes["button--alt"]} onClick={props.onClose}>
