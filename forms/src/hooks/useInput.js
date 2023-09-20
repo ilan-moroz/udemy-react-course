@@ -1,27 +1,49 @@
 import React from "react";
 
-const useInput = validateValue => {
-  const [inputValue, setInputValue] = React.useState("");
-  const [InputTouched, setInputTouched] = React.useState(false);
+const initialState = {
+  value: "",
+  isTouched: false,
+};
 
-  const inputValid = validateValue(inputValue);
-  const hasError = !inputValid && InputTouched;
+const inputStateReducer = (state, action) => {
+  switch (action.type) {
+    case "INPUT":
+      return { value: action.value, isTouched: state.isTouched };
+
+    case "BLUR":
+      return { isTouched: true, value: state.value };
+
+    case "RESET":
+      return { value: "", isTouched: false };
+
+    default:
+      return initialState;
+  }
+};
+
+const useInput = validateValue => {
+  const [inputState, dispatch] = React.useReducer(
+    inputStateReducer,
+    initialState
+  );
+
+  const inputValid = validateValue(inputState.value);
+  const hasError = !inputValid && inputState.isTouched;
 
   const inputChangeHandler = value => {
-    setInputValue(value);
+    dispatch({ type: "INPUT", value: value });
   };
 
   const inputBlur = () => {
-    setInputTouched(true);
+    dispatch({ type: "BLUR" });
   };
 
   const reset = () => {
-    setInputValue("");
-    setInputTouched("");
+    dispatch({ type: "RESET" });
   };
 
   return {
-    inputValue,
+    inputValue: inputState.value,
     hasError,
     inputValid,
     inputChangeHandler,
