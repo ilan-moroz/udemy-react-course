@@ -43,26 +43,24 @@ const Cart = props => {
 
   return (
     <Modal onClose={props.onClose}>
+      {cartItems}
+      <div className={classes.total}>
+        <span>Total Amount</span>
+        <span>{totalAmount}</span>
+      </div>
       {checkout ? (
         <OrderForm />
       ) : (
-        <>
-          {cartItems}
-          <div className={classes.total}>
-            <span>Total Amount</span>
-            <span>{totalAmount}</span>
-          </div>
-          <div className={classes.actions}>
-            <button className={classes["button--alt"]} onClick={props.onClose}>
-              Close
+        <div className={classes.actions}>
+          <button className={classes["button--alt"]} onClick={props.onClose}>
+            Close
+          </button>
+          {hasItems && (
+            <button className={classes.button} onClick={checkoutHandler}>
+              Order
             </button>
-            {hasItems && (
-              <button className={classes.button} onClick={checkoutHandler}>
-                Order
-              </button>
-            )}
-          </div>
-        </>
+          )}
+        </div>
       )}
     </Modal>
   );
