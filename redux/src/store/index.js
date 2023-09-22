@@ -23,6 +23,13 @@ const counterSlice = createSlice({
   },
 });
 
+const store = configureStore({
+  reducer: counterSlice.reducer,
+});
+
+export const counterActions = counterSlice.actions;
+export default store;
+
 // const counterReducer = (state = initialState, action) => {
 //   switch (action.type) {
 //     case "increment":
@@ -57,10 +64,3 @@ const counterSlice = createSlice({
 // const store = createStore(counterReducer);
 
 // export default store;
-
-const store = configureStore({
-  reducer: counterSlice.reducer,
-});
-
-export const counterActions = counterSlice.actions;
-export default store;
