@@ -1,15 +1,14 @@
-import { Outlet } from "react-router-dom";
 import MainNav from "../components/MainNav";
 
-const RootLayout = () => {
+const Page404 = () => {
   return (
     <>
       <MainNav />
       <main>
-        <Outlet />
+        <h1>Page not Found!😢</h1>
       </main>
     </>
   );
 };
 
-export default RootLayout;
+export default Page404;
