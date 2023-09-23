@@ -21,6 +21,17 @@ function MainNav() {
           </li>
           <li>
             <NavLink
+              to="/products"
+              className={({ isActive }) =>
+                isActive ? classes.active : undefined
+              }
+              end
+            >
+              Products
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
               to="/events"
               className={({ isActive }) =>
                 isActive ? classes.active : undefined
