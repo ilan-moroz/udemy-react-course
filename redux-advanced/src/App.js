@@ -4,7 +4,7 @@ import Layout from "./components/Layout/Layout";
 import Products from "./components/Shop/Products";
 import React from "react";
 import Notification from "./components/UI/Notification";
-import { sendCartData } from "./store/cartSlice";
+import { fetchCartData, sendCartData } from "./store/cartActions";
 
 let isInitial = true;
 
@@ -21,6 +21,10 @@ function App() {
     }
     dispatch(sendCartData(cart));
   }, [cart, dispatch]);
+
+  React.useEffect(() => {
+    dispatch(fetchCartData());
+  }, [dispatch]);
 
   return (
     <>
