@@ -1,5 +1,5 @@
 import EventsList from "../components/EventsList";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, json } from "react-router-dom";
 
 function EventsPage() {
   const data = useLoaderData();
@@ -13,14 +13,15 @@ function EventsPage() {
 export default EventsPage;
 
 export const loader = async () => {
-  const response = await fetch("http://localhost:8080/events");
+  const response = await fetch("http://localhost:8080/evesasdasdssnts");
 
   if (!response.ok) {
     // return { isError: true, message: "Error loading events" };
     // throw new Error({ message: "Error loading events" });
-    throw new Response(JSON.stringify({ message: "Error loading events" }), {
-      status: 500,
-    });
+    // throw new Response(JSON.stringify({ message: "Error loading events" }), {
+    //   status: 500,
+    // });
+    throw json({ message: "Error loading events" }, { status: 500 });
   } else {
     // const resData = await response.json();
     // return resData.events;
