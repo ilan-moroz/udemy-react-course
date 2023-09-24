@@ -29,11 +29,17 @@ const MainRoute = () => {
             },
             {
               path: ":eventId",
-              element: <EventDetailPage />,
+              id: "event-detail",
               loader: EventDetailLoader,
+              children: [
+                {
+                  index: true,
+                  element: <EventDetailPage />,
+                },
+                { path: "edit", element: <EditEventPage /> },
+              ],
             },
             { path: "new", element: <NewEventPage /> },
-            { path: ":eventId/edit", element: <EditEventPage /> },
           ],
         },
       ],
