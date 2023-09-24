@@ -1,8 +1,10 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import RootLayout from "../pages/RootLayout";
 import HomePage from "../pages/HomePage";
-import EventsPage, { loader } from "../pages/EventsPage";
-import EventDetailPage from "../pages/EventDetailPage";
+import EventsPage, { loader as eventLoader } from "../pages/EventsPage";
+import EventDetailPage, {
+  loader as EventDetailLoader,
+} from "../pages/EventDetailPage";
 import NewEventPage from "../pages/NewEventPage";
 import EditEventPage from "../pages/EditEventPage";
 import Page404 from "../pages/Page404";
@@ -23,9 +25,13 @@ const MainRoute = () => {
             {
               index: true,
               element: <EventsPage />,
-              loader: loader,
+              loader: eventLoader,
             },
-            { path: ":eventId", element: <EventDetailPage /> },
+            {
+              path: ":eventId",
+              element: <EventDetailPage />,
+              loader: EventDetailLoader,
+            },
             { path: "new", element: <NewEventPage /> },
             { path: ":eventId/edit", element: <EditEventPage /> },
           ],
