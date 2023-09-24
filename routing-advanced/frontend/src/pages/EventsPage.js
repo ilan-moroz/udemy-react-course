@@ -17,7 +17,10 @@ export const loader = async () => {
 
   if (!response.ok) {
     // return { isError: true, message: "Error loading events" };
-    throw new Error({ message: "Error loading events" });
+    // throw new Error({ message: "Error loading events" });
+    throw new Response(JSON.stringify({ message: "Error loading events" }), {
+      status: 500,
+    });
   } else {
     // const resData = await response.json();
     // return resData.events;
