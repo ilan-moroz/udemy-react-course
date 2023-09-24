@@ -1,5 +1,5 @@
 import EventForm from "../components/EventForm";
-import { json } from "react-router-dom";
+import { json, redirect } from "react-router-dom";
 
 const NewEventPage = () => {
   return <EventForm />;
@@ -32,4 +32,5 @@ export const action = async ({ request, params }) => {
       }
     );
   }
+  return redirect("/events");
 };
