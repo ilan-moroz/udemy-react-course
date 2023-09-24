@@ -25,7 +25,7 @@ function MainNavigation() {
               }
               end
             >
-              Products
+              Events
             </NavLink>
           </li>
           <li>
