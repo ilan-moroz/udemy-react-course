@@ -37,7 +37,7 @@ const EventsPage = () => {
             <h2>{event.title}</h2>
             <h5>{event.date}</h5>
             <p>${event.price}</p>
-            <Link to={`${event.id}`}>Event detail</Link>
+            <Link to={event.id}>Event detail</Link>
           </li>
         ))}
       </ul>
