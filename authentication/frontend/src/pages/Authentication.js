@@ -30,5 +30,9 @@ export const action = async ({ request }) => {
 
   if (!res.ok) throw json({ message: "No authentication" }, { status: 500 });
 
+  const resData = await res.json();
+  const token = resData.token;
+  localStorage.setItem("token", token);
+
   return redirect("/");
 };
