@@ -16,12 +16,12 @@ const EventDetailPage = () => {
 
   return (
     <>
-      <Suspense fallback={<p>Loading...</p>}>
+      <Suspense fallback={<p style={{ textAlign: "center" }}>Loading...</p>}>
         <Await resolve={event}>
           {loadEvent => <EventItem event={loadEvent} />}
         </Await>
       </Suspense>
-      <Suspense fallback={<p>Loading...</p>}>
+      <Suspense fallback={<p style={{ textAlign: "center" }}>Loading...</p>}>
         <Await resolve={events}>
           {loadEvents => <EventsList events={loadEvents} />}
         </Await>
