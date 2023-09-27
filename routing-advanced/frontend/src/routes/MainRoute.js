@@ -11,6 +11,9 @@ import EditEventPage from "../pages/EditEventPage";
 import Page404 from "../pages/Page404";
 import EventsRoot from "../pages/EventsRoot";
 import { action as manipulateEventAction } from "../components/EventForm";
+import NewsletterPage, {
+  action as newsletterAction,
+} from "../pages/Newsletter";
 
 const MainRoute = () => {
   const router = createBrowserRouter([
@@ -52,6 +55,11 @@ const MainRoute = () => {
               action: manipulateEventAction,
             },
           ],
+        },
+        {
+          path: "newsletter",
+          element: <NewsletterPage />,
+          action: newsletterAction,
         },
       ],
     },
