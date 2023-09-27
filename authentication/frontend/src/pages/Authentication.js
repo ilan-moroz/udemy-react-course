@@ -19,9 +19,9 @@ export const action = async ({ request }) => {
     email: data.get("email"),
     password: data.get("password"),
   };
-  const res = fetch(`http://localhost:8080/${mode}`, {
+  const res = await fetch(`http://localhost:8080/${mode}`, {
     method: "POST",
-    header: {
+    headers: {
       "content-type": "application/json",
     },
     body: JSON.stringify(authData),
