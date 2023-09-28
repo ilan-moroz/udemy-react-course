@@ -1,6 +1,6 @@
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData } from "react-router-dom";
 
-import PostList from '../components/PostList';
+import PostList from "../components/PostList";
 
 function BlogPage() {
   const posts = useLoaderData();
@@ -10,5 +10,5 @@ function BlogPage() {
 export default BlogPage;
 
 export function loader() {
-  return fetch('https://jsonplaceholder.typicode.com/posts');
+  return fetch("https://jsonplaceholder.typicode.com/posts");
 }
