@@ -1,11 +1,12 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 // import BlogPage, { loader as postsLoader } from './pages/Blog';
 import HomePage from './pages/Home';
-import PostPage, { loader as postLoader } from './pages/Post';
+// import PostPage, { loader as postLoader } from './pages/Post';
 import RootLayout from './pages/Root';
 import React from 'react';
 
 const BlogPage = React.lazy(() => import('./pages/Blog'));
+const PostPage = React.lazy(() => import('./pages/Post'));
 
 const router = createBrowserRouter([
   {
@@ -29,7 +30,16 @@ const router = createBrowserRouter([
             loader: () =>
               import('./pages/Blog').then(module => module.loader()),
           },
-          { path: ':id', element: <PostPage />, loader: postLoader },
+          {
+            path: ':id',
+            element: (
+              <React.Suspense fallback={<p>loading...</p>}>
+                <PostPage />
+              </React.Suspense>
+            ),
+            loader: meta =>
+              import('./pages/Post').then(module => module.loader(meta)),
+          },
         ],
       },
     ],
