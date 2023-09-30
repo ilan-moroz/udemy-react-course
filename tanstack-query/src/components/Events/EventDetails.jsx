@@ -12,6 +12,7 @@ export default function EventDetails() {
   const { data, isPending } = useQuery({
     queryKey: ['event'],
     queryFn: ({ signal }) => fetchEvent({ id, signal }),
+    gcTime: 1000,
   });
 
   const { mutate } = useMutation({
