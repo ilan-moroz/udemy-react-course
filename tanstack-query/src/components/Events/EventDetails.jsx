@@ -79,7 +79,6 @@ export default function EventDetails() {
           View all Events
         </Link>
       </Header>
-
       <article id="event-details">{content}</article>
     </>
   );
