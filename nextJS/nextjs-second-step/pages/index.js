@@ -25,14 +25,25 @@ const HomePage = props => {
   return <MeetupList meetups={props.meetups} />;
 };
 
-export const getStaticProps = async () => {
-  // example -- fetch data from api
+export const getServerSideProps = async context => {
+  const req = context.req;
+  const res = context.res;
+
   return {
     props: {
       meetups: DUMMY_MEETUPS,
     },
-    revalidate: 10,
   };
 };
+
+// export const getStaticProps = async () => {
+//   // example -- fetch data from api
+//   return {
+//     props: {
+//       meetups: DUMMY_MEETUPS,
+//     },
+//     revalidate: 10,
+//   };
+// };
 
 export default HomePage;
