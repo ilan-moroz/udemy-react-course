@@ -7,7 +7,7 @@ const MeetupDetails = props => {
     <>
       <Head>
         <title>{props.meetupData.title}</title>
-        <meta name="description" content="Add your own Meetups" />
+        <meta name="description" content={props.meetupData.description} />
       </Head>
       <MeetupDetail
         img={props.meetupData.image}
