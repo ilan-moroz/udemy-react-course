@@ -25,7 +25,7 @@ const HomePage = props => {
   return <MeetupList meetups={props.meetups} />;
 };
 
-// ID DATA CHANGES A LOT OF TIMES=>>>>>>
+// IF DATA CHANGES A LOT OF TIMES=>>>>>>
 // export const getServerSideProps = async context => {
 //   const req = context.req;
 //   const res = context.res;
