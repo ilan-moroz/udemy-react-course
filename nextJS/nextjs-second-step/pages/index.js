@@ -13,7 +13,7 @@ const DUMMY_MEETUPS = [
 
   {
     id: 'm2',
-    title: 'cat GANG Meetup',
+    title: 'Cat GANG Meetup',
     image:
       'https://steamuserimages-a.akamaihd.net/ugc/1644340994747007967/853B20CD7694F5CF40E83AAC670572A3FE1E3D35/?imw=512&&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false',
     address: 'cat city puppy street 69',
@@ -31,6 +31,7 @@ export const getStaticProps = async () => {
     props: {
       meetups: DUMMY_MEETUPS,
     },
+    revalidate: 10,
   };
 };
 
