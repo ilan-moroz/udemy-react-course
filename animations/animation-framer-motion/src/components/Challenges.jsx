@@ -14,7 +14,7 @@ export default function Challenges() {
   }
 
   function handleViewDetails(id) {
-    setExpanded((prevId) => {
+    setExpanded(prevId => {
       if (prevId === id) {
         return null;
       }
@@ -24,11 +24,9 @@ export default function Challenges() {
   }
 
   const filteredChallenges = {
-    active: challenges.filter((challenge) => challenge.status === 'active'),
-    completed: challenges.filter(
-      (challenge) => challenge.status === 'completed'
-    ),
-    failed: challenges.filter((challenge) => challenge.status === 'failed'),
+    active: challenges.filter(challenge => challenge.status === 'active'),
+    completed: challenges.filter(challenge => challenge.status === 'completed'),
+    failed: challenges.filter(challenge => challenge.status === 'failed'),
   };
 
   const displayedChallenges = filteredChallenges[selectedType];
@@ -42,7 +40,7 @@ export default function Challenges() {
       >
         {displayedChallenges.length > 0 && (
           <ol className="challenge-items">
-            {displayedChallenges.map((challenge) => (
+            {displayedChallenges.map(challenge => (
               <ChallengeItem
                 key={challenge.id}
                 challenge={challenge}
