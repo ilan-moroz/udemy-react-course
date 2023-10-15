@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 
 function App() {
   const [x, setX] = useState(0);
@@ -7,7 +8,14 @@ function App() {
 
   return (
     <div id="demo">
-      <div id="box" />
+      <motion.div
+        id="box"
+        animate={{ x: x, y: y, rotate: rotate }}
+        // transition={{
+        //   duration: 0.3,
+        //   type: 'spring',
+        // }}
+      />
 
       <div id="inputs">
         <p>
@@ -15,7 +23,7 @@ function App() {
           <input
             type="number"
             id="x"
-            onChange={(event) => setX(+event.target.value)}
+            onChange={event => setX(+event.target.value)}
           />
         </p>
 
@@ -24,7 +32,7 @@ function App() {
           <input
             type="number"
             id="y"
-            onChange={(event) => setY(+event.target.value)}
+            onChange={event => setY(+event.target.value)}
           />
         </p>
 
@@ -33,7 +41,7 @@ function App() {
           <input
             type="number"
             id="rotate"
-            onChange={(event) => setRotate(+event.target.value)}
+            onChange={event => setRotate(+event.target.value)}
           />
         </p>
       </div>
