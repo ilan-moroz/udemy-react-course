@@ -8,17 +8,22 @@ export default function WelcomePage() {
 
   const yCity = useTransform(scrollY, [0, 500], [0, -100]);
   const yHero = useTransform(scrollY, [0, 500], [0, -150]);
-
   const opacityCity = useTransform(
     scrollY,
     [0, 200, 300, 500],
     [1, 0.5, 0.5, 0]
   );
 
+  const yText = useTransform(scrollY, [0, 200, 300, 500], [1, 50, 50, 300]);
+  const selectText = useTransform(scrollY, [0, 300], [1, 1.5]);
+
   return (
     <>
       <header id="welcome-header">
-        <motion.div id="welcome-header-content">
+        <motion.div
+          id="welcome-header-content"
+          style={{ scale: selectText, y: yText }}
+        >
           <h1>Ready for a challenge?</h1>
           <Link id="cta-link" to="/challenges">
             Get Started
