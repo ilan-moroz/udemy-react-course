@@ -33,4 +33,17 @@ describe('Greeting comp', () => {
     const pText = screen.getByText(/Changed/i);
     expect(pText).toBeInTheDocument();
   });
+
+  test('does not render "nice to see u" if the button clicked', () => {
+    // arrange
+    render(<Greeting />);
+
+    //   act
+    const buttonElement = screen.getByRole('button');
+    userEvent.click(buttonElement);
+
+    // assert
+    const pText = screen.queryByText('Its nice to see u');
+    expect(pText).toBeNull();
+  });
 });
