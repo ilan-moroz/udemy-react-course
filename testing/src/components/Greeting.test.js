@@ -9,6 +9,6 @@ test('renders hello world text', () => {
   // ... nothing
 
   // assert
-  const linkElement = screen.getByText(/hello world/i);
-  expect(linkElement).toBeInTheDocument();
+  const helloWorldElement = screen.getByText(/hello world/i);
+  expect(helloWorldElement).toBeInTheDocument();
 });
