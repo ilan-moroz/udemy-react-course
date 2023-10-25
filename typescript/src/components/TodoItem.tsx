@@ -2,10 +2,10 @@ import classes from './TodoItem.module.css';
 
 const TodosItem: React.FC<{
   text: string;
-  onClick: React.MouseEventHandler;
+  onRemoveTodo: React.MouseEventHandler;
 }> = props => {
   return (
-    <li className={classes.item} onClick={props.onClick}>
+    <li className={classes.item} onClick={props.onRemoveTodo}>
       {props.text}
     </li>
   );
