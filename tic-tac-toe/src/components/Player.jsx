@@ -13,7 +13,7 @@ const Player = ({ name, symbol }) => {
         {!isEdit ? (
           <span className="player-name">{name}</span>
         ) : (
-          <input type="text"></input>
+          <input type="text" required></input>
         )}
         <span className="player-symbol">{symbol}</span>
       </span>
