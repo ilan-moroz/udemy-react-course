@@ -1,19 +1,4 @@
-const initialGameBoard = [
-  [null, null, null],
-  [null, null, null],
-  [null, null, null],
-];
-
-const GameBoard = ({ onPlayerChange, turns }) => {
-  let gameBoard = initialGameBoard;
-
-  for (const turn of turns) {
-    const { square, player } = turn;
-    const { row, col } = square;
-
-    gameBoard[row][col] = player;
-  }
-
+const GameBoard = ({ onPlayerChange, board }) => {
   // const [gameBoard, setGameBoard] = useState(initialGameBoard);
   // const handleUserSelection = (rowI, colI) => {
   //   setGameBoard(prevBoard => {
@@ -27,7 +12,7 @@ const GameBoard = ({ onPlayerChange, turns }) => {
 
   return (
     <ol id="game-board">
-      {gameBoard.map((row, rowI) => (
+      {board.map((row, rowI) => (
         <li key={rowI}>
           <ol>
             {row.map((playerSymbol, colI) => (
