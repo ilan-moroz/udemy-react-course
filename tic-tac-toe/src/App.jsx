@@ -30,7 +30,7 @@ function App() {
         </ol>
         <GameBoard onPlayerChange={handleActivePlayer} turns={gameTurns} />
       </div>
-      <Log />
+      <Log turns={gameTurns} />
     </main>
   );
 }
