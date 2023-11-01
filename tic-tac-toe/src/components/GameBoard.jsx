@@ -6,15 +6,17 @@ const initialGameBoard = [
   [null, null, null],
 ];
 
-const GameBoard = () => {
+const GameBoard = ({ onPlayerChange, player }) => {
   const [gameBoard, setGameBoard] = useState(initialGameBoard);
 
   const handleUserSelection = (rowI, colI) => {
     setGameBoard(prevBoard => {
       const updatedBoard = [...prevBoard];
-      updatedBoard[rowI][colI] = 'X';
+      updatedBoard[rowI][colI] = player;
       return updatedBoard;
     });
+
+    onPlayerChange();
   };
 
   return (
