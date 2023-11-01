@@ -48,6 +48,8 @@ function App() {
     }
   }
 
+  const hasDraw = gameTurns.length === 9 && !winner;
+
   const handleActivePlayer = (rowI, colI) => {
     // setActivePlayer(curPlayer => (curPlayer === 'X' ? 'O' : 'X'));
 
@@ -69,7 +71,7 @@ function App() {
           <Player name="Player 1" symbol="X" isActive={activePlayer === 'X'} />
           <Player name="Player 2" symbol="O" isActive={activePlayer === 'O'} />
         </ol>
-        {winner && <GameOver winner={winner} />}
+        {(winner || hasDraw) && <GameOver winner={winner} />}
         <GameBoard onPlayerChange={handleActivePlayer} board={gameBoard} />
       </div>
       <Log turns={gameTurns} />
