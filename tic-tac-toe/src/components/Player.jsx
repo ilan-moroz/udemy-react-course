@@ -1,11 +1,13 @@
 import { useState } from 'react';
 
-const Player = ({ name, symbol, isActive }) => {
+const Player = ({ name, symbol, isActive, changeName }) => {
   const [isEdit, setIsEdit] = useState(false);
   const [playerName, setPlayerName] = useState(name);
 
   const editHandler = () => {
     setIsEdit(prev => !prev);
+
+    if (isEdit) changeName(symbol, playerName);
   };
 
   const changeHandler = e => {
