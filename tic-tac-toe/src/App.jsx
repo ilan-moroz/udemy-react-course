@@ -17,6 +17,25 @@ const deriveActivePlayer = gameTurns => {
   return curPlayer;
 };
 
+const deriveWinner = (gameBoard, players) => {
+  let winner;
+
+  for (const combo of WINNING_COMBINATIONS) {
+    const firstSquare = gameBoard[combo[0].row][combo[0].col];
+    const secondSquare = gameBoard[combo[1].row][combo[1].col];
+    const thirdSquare = gameBoard[combo[2].row][combo[2].col];
+
+    if (
+      firstSquare &&
+      firstSquare === secondSquare &&
+      firstSquare === thirdSquare
+    ) {
+      winner = players[firstSquare];
+    }
+  }
+  return winner;
+};
+
 function App() {
   // const [activePlayer, setActivePlayer] = useState('X');
   const [gameTurns, setGameTurns] = useState([]);
@@ -34,22 +53,6 @@ function App() {
     const { row, col } = square;
 
     gameBoard[row][col] = player;
-  }
-
-  let winner;
-
-  for (const combo of WINNING_COMBINATIONS) {
-    const firstSquare = gameBoard[combo[0].row][combo[0].col];
-    const secondSquare = gameBoard[combo[1].row][combo[1].col];
-    const thirdSquare = gameBoard[combo[2].row][combo[2].col];
-
-    if (
-      firstSquare &&
-      firstSquare === secondSquare &&
-      firstSquare === thirdSquare
-    ) {
-      winner = players[firstSquare];
-    }
   }
 
   const hasDraw = gameTurns.length === 9 && !winner;
@@ -80,6 +83,8 @@ function App() {
       };
     });
   };
+
+  const winner = deriveWinner(gameBoard, players);
 
   return (
     <main>
