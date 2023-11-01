@@ -12,7 +12,7 @@ function App() {
 
     setGameTurns(prevTurn => {
       let curPlayer = 'X';
-      if (prevTurn[0].player === 'X') curPlayer = 'O';
+      if (prevTurn.length > 0 && prevTurn[0].player === 'X') curPlayer = 'O';
       const updatedTurns = [
         { square: { row: rowI, col: colI }, player: curPlayer },
         ...prevTurn,
@@ -28,7 +28,7 @@ function App() {
           <Player name="Player 1" symbol="X" isActive={activePlayer === 'X'} />
           <Player name="Player 2" symbol="O" isActive={activePlayer === 'O'} />
         </ol>
-        <GameBoard onPlayerChange={handleActivePlayer} />
+        <GameBoard onPlayerChange={handleActivePlayer} turns={gameTurns} />
       </div>
       <Log />
     </main>
