@@ -1,15 +1,28 @@
 import { useRef, useState } from 'react';
-
+import { sortPlacesByDistance } from './loc.js';
 import Places from './components/Places.jsx';
 import { AVAILABLE_PLACES } from './data.js';
 import Modal from './components/Modal.jsx';
 import DeleteConfirmation from './components/DeleteConfirmation.jsx';
 import logoImg from './assets/logo.png';
+import { useEffect } from 'react';
 
 function App() {
   const modal = useRef();
   const selectedPlace = useRef();
+  const [places, setPlaces] = useState([]);
   const [pickedPlaces, setPickedPlaces] = useState([]);
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(position => {
+      const sortedPlaces = sortPlacesByDistance(
+        AVAILABLE_PLACES,
+        position.coords.latitude,
+        position.coords.longitude
+      );
+      setPlaces(sortedPlaces);
+    });
+  }, []);
 
   function handleStartRemovePlace(id) {
     modal.current.open();
@@ -21,18 +34,18 @@ function App() {
   }
 
   function handleSelectPlace(id) {
-    setPickedPlaces((prevPickedPlaces) => {
-      if (prevPickedPlaces.some((place) => place.id === id)) {
+    setPickedPlaces(prevPickedPlaces => {
+      if (prevPickedPlaces.some(place => place.id === id)) {
         return prevPickedPlaces;
       }
-      const place = AVAILABLE_PLACES.find((place) => place.id === id);
+      const place = AVAILABLE_PLACES.find(place => place.id === id);
       return [place, ...prevPickedPlaces];
     });
   }
 
   function handleRemovePlace() {
-    setPickedPlaces((prevPickedPlaces) =>
-      prevPickedPlaces.filter((place) => place.id !== selectedPlace.current)
+    setPickedPlaces(prevPickedPlaces =>
+      prevPickedPlaces.filter(place => place.id !== selectedPlace.current)
     );
     modal.current.close();
   }
@@ -63,7 +76,7 @@ function App() {
         />
         <Places
           title="Available Places"
-          places={AVAILABLE_PLACES}
+          places={places.length > 0 ? places : AVAILABLE_PLACES}
           onSelectPlace={handleSelectPlace}
         />
       </main>
