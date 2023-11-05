@@ -12,10 +12,9 @@ const Quiz = () => {
     setUserAnswers(prevAnswers => [...prevAnswers, answer]);
   }, []);
 
-  const handleSkipAnswer = useCallback(
-    () => handleAnswerSelect(answer),
-    [handleAnswerSelect]
-  );
+  const handleSkipAnswer = useCallback(() => {
+    handleAnswerSelect(null);
+  }, [handleAnswerSelect]);
 
   const quizIsOver = curQuestionIndex === QUESTIONS.length;
 
@@ -35,15 +34,16 @@ const Quiz = () => {
       <div id="question">
         <QuestionTimer
           timeout={10000}
-          onTimeout={() => {
-            handleAnswerSelect(null);
-          }}
+          onTimeout={handleSkipAnswer}
+          key={curQuestionIndex}
         />
         <h2>{QUESTIONS[curQuestionIndex].text}</h2>
         <ul id="answers">
           {shuffleAnswers.map(answer => (
             <li key={answer} className="answer">
-              <button onClick={handleSkipAnswer}>{answer}</button>
+              <button onClick={() => handleAnswerSelect(answer)}>
+                {answer}
+              </button>
             </li>
           ))}
         </ul>
