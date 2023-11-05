@@ -77,6 +77,7 @@ function App() {
         <Places
           title="Available Places"
           places={places.length > 0 ? places : AVAILABLE_PLACES}
+          fallbackText="Sorting bla....."
           onSelectPlace={handleSelectPlace}
         />
       </main>
