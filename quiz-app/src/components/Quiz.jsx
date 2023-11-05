@@ -1,28 +1,31 @@
-import { useCallback, useState } from 'react';
-import QUESTIONS from '../questions.js';
-import completeImg from '../assets/quiz-complete.png';
-import QuestionTimer from './QuestionTimer.jsx';
+import { useCallback, useRef, useState } from "react";
+import QUESTIONS from "../questions.js";
+import completeImg from "../assets/quiz-complete.png";
+import QuestionTimer from "./QuestionTimer.jsx";
+import Answers from "./Answers.jsx";
 
 const Quiz = () => {
+  const shuffleAnswers = useRef();
   const [userAnswers, setUserAnswers] = useState([]);
-  const [answerState, setAnswerState] = useState('');
+
+  const [answerState, setAnswerState] = useState("");
 
   const curQuestionIndex =
-    answerState === '' ? userAnswers.length : answerState.length - 1;
+    answerState === "" ? userAnswers.length : answerState.length - 1;
   const quizIsOver = curQuestionIndex === QUESTIONS.length;
 
   const handleAnswerSelect = useCallback(
-    answer => {
-      setAnswerState('answered');
-      setUserAnswers(prevAnswers => [...prevAnswers, answer]);
+    (answer) => {
+      setAnswerState("answered");
+      setUserAnswers((prevAnswers) => [...prevAnswers, answer]);
 
       setTimeout(() => {
         if (answer === QUESTIONS[curQuestionIndex].answers[0])
-          setAnswerState('correct');
-        else setAnswerState('wrong');
+          setAnswerState("correct");
+        else setAnswerState("wrong");
 
         setTimeout(() => {
-          setAnswerState('');
+          setAnswerState("");
         }, 2000);
       }, 1000);
     },
@@ -41,9 +44,10 @@ const Quiz = () => {
       </div>
     );
 
-  const shuffleAnswers = [...QUESTIONS[curQuestionIndex].answers];
-  shuffleAnswers.sort(() => Math.random() - 0.5);
-
+  if (!shuffleAnswers.current) {
+    shuffleAnswers.current = [...QUESTIONS[curQuestionIndex].answers];
+    shuffleAnswers.current.sort(() => Math.random() - 0.5);
+  }
   return (
     <div id="quiz">
       <div id="question">
@@ -53,28 +57,7 @@ const Quiz = () => {
           key={curQuestionIndex}
         />
         <h2>{QUESTIONS[curQuestionIndex].text}</h2>
-        <ul id="answers">
-          {shuffleAnswers.map(answer => {
-            const isSelected = userAnswers[userAnswers.length - 1] === answer;
-            let cssClass = '';
-            if (answerState === 'answered' && isSelected) cssClass = 'selected';
-            if (
-              (answerState === 'correct' || answerState === 'wrong') &&
-              isSelected
-            )
-              cssClass = answerState;
-            return (
-              <li key={answer} className="answer">
-                <button
-                  onClick={() => handleAnswerSelect(answer)}
-                  className={cssClass}
-                >
-                  {answer}
-                </button>
-              </li>
-            );
-          })}
-        </ul>
+        <Answers />
       </div>
     </div>
   );
