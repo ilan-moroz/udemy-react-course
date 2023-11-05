@@ -13,6 +13,8 @@ const SelectedProject = ({
     day: 'numeric',
   });
 
+  const projectTasks = tasks.filter(task => task.projectId === project.id);
+
   return (
     <div className="w-[35rem] mt-16">
       <header className="pb-4 mb-4 border-b-2 border-stone-300 ">
@@ -32,7 +34,7 @@ const SelectedProject = ({
           {project.description}
         </p>
       </header>
-      <Tasks onAdd={onAddTask} onDelete={onDeleteTask} tasks={tasks} />
+      <Tasks onAdd={onAddTask} onDelete={onDeleteTask} tasks={projectTasks} />
     </div>
   );
 };
