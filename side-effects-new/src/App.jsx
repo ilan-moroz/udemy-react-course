@@ -5,7 +5,7 @@ import { AVAILABLE_PLACES } from './data.js';
 import Modal from './components/Modal.jsx';
 import DeleteConfirmation from './components/DeleteConfirmation.jsx';
 import logoImg from './assets/logo.png';
-import { useEffect } from 'react';
+import { useEffect, useCallback } from 'react';
 
 const storedIDs = JSON.parse(localStorage.getItem('selectedPlaces')) || [];
 const storedPlaces = storedIDs.map(id =>
@@ -55,7 +55,8 @@ function App() {
       );
   }
 
-  function handleRemovePlace() {
+  // useCallback when using functions in dependencies array
+  const handleRemovePlace = useCallback(function handleRemovePlace() {
     setPickedPlaces(prevPickedPlaces =>
       prevPickedPlaces.filter(place => place.id !== selectedPlace.current)
     );
@@ -66,7 +67,7 @@ function App() {
       'selectedPlaces',
       JSON.stringify(storedIDs.filter(id => id !== selectedPlace.current))
     );
-  }
+  }, []);
 
   return (
     <>
