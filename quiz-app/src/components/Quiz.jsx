@@ -11,15 +11,19 @@ const Quiz = () => {
   };
 
   return (
-    <div id="question">
-      <h2>{QUESTIONS[curQuestionIndex].text}</h2>
-      <ul id="answers">
-        {QUESTIONS[curQuestionIndex].answers.map(answer => (
-          <li key={answer} className="answer">
-            <button onClick={() => handleAnswerSelect(answer)}>{answer}</button>
-          </li>
-        ))}
-      </ul>
+    <div id="quiz">
+      <div id="question">
+        <h2>{QUESTIONS[curQuestionIndex].text}</h2>
+        <ul id="answers">
+          {QUESTIONS[curQuestionIndex].answers.map(answer => (
+            <li key={answer} className="answer">
+              <button onClick={() => handleAnswerSelect(answer)}>
+                {answer}
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };
