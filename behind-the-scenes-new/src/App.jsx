@@ -19,7 +19,7 @@ function App() {
       <Header />
       <main>
         <ConfigCounter onSet={setCount} />
-        <Counter initialCount={chosenCount} key={Math.random() * 1000} />
+        <Counter initialCount={chosenCount} key={chosenCount} />
       </main>
     </>
   );
