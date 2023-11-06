@@ -1,11 +1,9 @@
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useState } from 'react';
 import QUESTIONS from '../questions.js';
 import completeImg from '../assets/quiz-complete.png';
-import QuestionTimer from './QuestionTimer.jsx';
-import Answers from './Answers.jsx';
+import Question from './Question.jsx';
 
 const Quiz = () => {
-  const shuffleAnswers = useRef();
   const [userAnswers, setUserAnswers] = useState([]);
 
   const [answerState, setAnswerState] = useState('');
@@ -44,21 +42,17 @@ const Quiz = () => {
       </div>
     );
 
-  if (!shuffleAnswers.current) {
-    shuffleAnswers.current = [...QUESTIONS[curQuestionIndex].answers];
-    shuffleAnswers.current.sort(() => Math.random() - 0.5);
-  }
   return (
     <div id='quiz'>
-      <div id='question'>
-        <QuestionTimer
-          timeout={15000}
-          onTimeout={handleSkipAnswer}
-          key={curQuestionIndex}
-        />
-        <h2>{QUESTIONS[curQuestionIndex].text}</h2>
-        <Answers />
-      </div>
+      <Question
+        key={curQuestionIndex}
+        questionText={QUESTIONS[curQuestionIndex].text}
+        answers={QUESTIONS[curQuestionIndex].answers}
+        onSelectAnswer={handleAnswerSelect}
+        selectedAnswer={userAnswers[userAnswers.length - 1]}
+        answerState={answerState}
+        onSkipAnswer={handleSkipAnswer}
+      />
     </div>
   );
 };
