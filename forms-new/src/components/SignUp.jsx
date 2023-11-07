@@ -7,6 +7,8 @@ export default function SignUp() {
     const data = Object.fromEntries(fData);
     data.acquisition = acquisition;
     console.log('🚀 ~ file: Signup.jsx:9 ~ handleSubmit ~ data:', data);
+
+    e.target.reset();
   };
 
   return (
