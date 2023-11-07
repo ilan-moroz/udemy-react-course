@@ -18,7 +18,7 @@ export default function SignUp() {
 
       <div className='control'>
         <label htmlFor='email'>Email</label>
-        <input id='email' type='email' name='email' />
+        <input id='email' type='email' name='email' required />
       </div>
 
       <div className='control-row'>
