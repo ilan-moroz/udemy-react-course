@@ -21,7 +21,7 @@ const cartReducer = (state, action) => {
         };
         updatedItems[(existingItemIndex = updateItem)];
       } else updatedItems.push({ ...action.item, quantity: 1 });
-      return updatedItems;
+      return { ...state, items: updatedItems };
     case 'REMOVE_ITEM':
       return;
     default:
