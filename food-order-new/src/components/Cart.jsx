@@ -16,14 +16,18 @@ const Cart = () => {
   const userCtx = useContext(UserProgContext);
 
   const handleCloseCart = () => {
-    userCtx.hideCart();
+    if (userCtx.progress === 'cart') userCtx.hideCart();
   };
 
   const handleCheckout = () => {
     userCtx.showCheckout();
   };
   return (
-    <Modal className='cart' open={userCtx.progress === 'cart'}>
+    <Modal
+      className='cart'
+      open={userCtx.progress === 'cart'}
+      onClose={handleCloseCart}
+    >
       <h2>Your Cart</h2>
       <ul>
         {cartCtx.items.map(item => (
