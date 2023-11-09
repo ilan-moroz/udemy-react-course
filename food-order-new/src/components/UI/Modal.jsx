@@ -5,8 +5,9 @@ const Modal = ({ children, open, className = '' }) => {
   const dialog = useRef();
 
   useEffect(() => {
-    if (open) dialog.current.showModal();
-    // else dialog.current.hideModal();
+    const modal = dialog.current;
+    if (open) modal.showModal();
+    else modal.close();
   }, [open]);
 
   return createPortal(
