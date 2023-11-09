@@ -1,5 +1,6 @@
 // import { useEffect, useState } from 'react';
 import useHttp from '../hooks/useHttp';
+import Error from './Error';
 import MealItem from './MealItem';
 
 const req = {};
@@ -25,8 +26,9 @@ const Meals = () => {
     isLoading,
     error,
   } = useHttp('http://localhost:3000/meals', req, []);
-  if (isLoading) return <p>Fetching meals...</p>;
-  console.log('🚀 ~ file: Meals.jsx:26 ~ Meals ~ meals:', meals);
+  if (isLoading) return <p className='center'>Fetching meals...</p>;
+
+  if (error) return <Error title='Failed to fetch meals' message={error} />;
 
   return (
     <ul id='meals'>
