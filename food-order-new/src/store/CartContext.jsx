@@ -28,17 +28,19 @@ const cartReducer = (state, action) => {
         item => item.id === action.id
       );
       const existingCartItem = state.items[existingItemIndeX];
+      let updateItems;
       if (existingCartItem.quantity === 1) {
-        const updatedItems = [...state.items];
-        updatedItems.splice(existingCartItem, 1);
+        updateItems = state.items.filter(item => item.id !== action.id);
       } else {
+        updateItems = [...state.items];
         const updatedItem = {
           ...existingCartItem,
           quantity: existingCartItem.quantity - 1,
         };
-        updatedItems[existingItemIndeX] = updatedItem;
+        updateItems[existingItemIndeX] = updatedItem;
       }
-      return { ...state, items: updatedItems };
+      return { ...state, items: updateItems };
+
     default:
       return state;
   }
